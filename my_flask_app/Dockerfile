@@ -1,4 +1,16 @@
-FROM ubuntu:latest
+FROM python:latest
 LABEL authors="toxidxd"
 
-ENTRYPOINT ["top", "-b"]
+RUN apt-get update && apt-get upgrade -y && apt-get clean -y
+
+RUN mkdir /app
+
+COPY requirements.txt /app/
+
+RUN python3 -m pip install -r app/requirements.txt
+
+COPY app.py /app
+
+WORKDIR /app
+
+ENTRYPOINT ["python", "app.py"]
