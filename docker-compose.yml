@@ -5,3 +5,7 @@ services:
       - "5000:5000"
     volumes:
       - ./my_flask_app:/app
+    links:
+      - mongodb
+  mongodb:
+    image: mongo
