@@ -12,13 +12,13 @@ db = client.tododb
 
 @app.route('/')
 def todo():
-    _items = db.items.find()
+    _items = db.tododb.find()
     items = [item for item in _items]
-    return render_template('index.html', items=items)
+    return render_template('todo.html', items=items)
 
 
-@app.route('/add', methods=['POST'])
-def add():
+@app.route('/new', methods=['POST'])
+def new():
     item_doc = {
         'task': request.form['task'],
         'description': request.form['description']
